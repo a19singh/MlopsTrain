@@ -1,0 +1,24 @@
+Convol layer 1Filters 32kernels 2Convol layer 1Filters 32kernels 2Convol layer 1Filters 32kernels 2Pool size 2Fully connected layer 1Neurons 128Epochs 5Accuracy 0Convol layer : 1
+Filters : 32
+kernels : 2
+Pool size : 2
+Fully connected layer : 1
+Neurons : 128
+Epochs : 5
+Accuracy : 0
+Convol layer : 1
+Filters : 32
+kernels : 2
+Pool size : 2
+Fully connected layer : 1
+Neurons : 128
+Epochs : 5
+Accuracy : 0
+Convol layer : 1
+Filters : 32
+kernels : 2
+Pool size : 2
+Fully connected layer : 1
+Neurons : 128
+Epochs : 5
+Accuracy : 0

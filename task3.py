@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 from keras.datasets import mnist
 
 
-# In[ ]:
+# In[2]:
 
 
 from keras import backend
@@ -16,16 +16,41 @@ from keras import backend
 # In[ ]:
 
 
+
+
+
+# In[3]:
+
+
+with open('input.txt', 'r') as file:
+   lines = file.readlines()
+
+
+# In[4]:
+
+
+layer=int(lines[0])
+filt=int(lines[1])
+ker=int(lines[2])
+pool=int(lines[3])
+fc=int(lines[4])
+fc_layer=int(lines[5])
+epo=int(lines[6])
+
+
+# In[5]:
+
+
 dataset = mnist.load_data('mymnist.db')
 
 
-# In[ ]:
+# In[6]:
 
 
 train , test = dataset
 
 
-# In[ ]:
+# In[7]:
 
 
 X_train , Y_train = train
@@ -34,16 +59,16 @@ X_train , Y_train = train
 # In[ ]:
 
 
-#X_train.shape
 
 
-# In[ ]:
+
+# In[8]:
 
 
 X_test , Y_test =test
 
 
-# In[ ]:
+# In[9]:
 
 
 if backend.image_data_format() == 'channels_first':
@@ -56,139 +81,155 @@ else:
     input_shape = (28, 28, 1)
 
 
-# In[ ]:
+# In[10]:
 
 
 #X_train_id = X_train.reshape(-1 , 28*28)
 
 
-# In[ ]:
+# In[11]:
 
 
 X_train =X_train.astype('float32')
 
 
-# In[ ]:
+# In[12]:
 
 
 from keras.utils.np_utils import to_categorical
 
 
-# In[ ]:
+# In[13]:
 
 
 y_train_cat = to_categorical(Y_train)
 
 
-# In[ ]:
+# In[14]:
 
 
 from keras.layers import Convolution2D
 
 
-# In[ ]:
+# In[15]:
 
 
 from keras.layers import MaxPooling2D
 
 
-# In[ ]:
+# In[16]:
 
 
 from keras.layers import Flatten
 
 
-# In[ ]:
+# In[17]:
 
 
 from keras.models import Sequential
 
 
-# In[ ]:
+# In[18]:
 
 
 model = Sequential()
 
 
-# In[ ]:
+# In[19]:
 
 
-model.add(Convolution2D(filters=32,kernel_size=(2,2), activation='relu' , input_shape=input_shape))
-
-
-# In[ ]:
-
-
-
+for i in range(1,layer+1):
+    model.add(Convolution2D(filters=filt,kernel_size=(ker,ker), activation='relu' , input_shape=input_shape))
+    model.add(MaxPooling2D(pool_size=(pool,pool)))
+    model.add(Flatten())
 
 
 # In[ ]:
 
 
-model.add(MaxPooling2D(pool_size=(2,2)))
 
 
-# In[ ]:
 
-
-model.add(Flatten())
-
-
-# In[ ]:
+# In[20]:
 
 
 from keras.layers import Dense
 
 
-# In[ ]:
+# In[21]:
 
 
-model.add(Dense(units=128 , activation='relu'))
+for i in range(1,fc+1):
+    model.add(Dense(units=fc_layer , activation='relu'))    
 
 
-# In[ ]:
+# In[22]:
 
 
 model.add(Dense(units=10, activation='softmax'))
 
 
-# In[ ]:
+# In[23]:
 
 
 model.compile(optimizer='adam',loss='categorical_crossentropy', metrics=['accuracy'])
 
 
-# In[ ]:
+# In[24]:
 
 
-model.fit(X_train,y_train_cat ,epochs=25)
+model.fit(X_train,y_train_cat ,epochs=epo)
 
 
-# In[ ]:
+# In[25]:
 
 
 #X_train.shape
 
 
-# In[ ]:
+# In[26]:
 
 
 y_test_cat = to_categorical(Y_test)
 score = model.evaluate(X_test, y_test_cat, verbose=0)
 
 
-# In[ ]:
+# In[27]:
 
 
 #Loss
 # score[0]
 
 
-# In[ ]:
+# In[28]:
 
 
 # Accuracy
 print(score[1])
+
+
+# model.summary
+# 
+
+# In[30]:
+
+
+
+
+
+# In[37]:
+
+
+feed = open("data.txt","a+")
+feed.write("------------------------------------\r\n")
+feed.write("Convol layer : %d\r\n" %layer)
+feed.write("Filters : %d\r\n" %filt)
+feed.write("kernels : %d\r\n" %ker)
+feed.write("Pool size : %d\r\n" %pool)
+feed.write("Fully connected layer : %d\r\n" %fc)
+feed.write("Neurons : %d\r\n" %fc_layer)
+feed.write("Epochs : %d\r\n" %epo)
+feed.write("Accuracy : %d\r\n" %score[1])
 
 
 # In[ ]:
