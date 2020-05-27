@@ -205,8 +205,10 @@ score = model.evaluate(X_test, y_test_cat, verbose=0)
 
 
 # Accuracy
-print(score[1])
 
+x=float(score[1])
+x=x*100
+print(x)
 
 # model.summary
 # 
@@ -221,7 +223,7 @@ print(score[1])
 
 
 feed = open("data.txt","a+")
-feed.write("------------------------------------\r\n")
+#feed.write("<----------------------------------->\r\n")
 feed.write("Convol layer : %d\r\n" %layer)
 feed.write("Filters : %d\r\n" %filt)
 feed.write("kernels : %d\r\n" %ker)
@@ -229,8 +231,8 @@ feed.write("Pool size : %d\r\n" %pool)
 feed.write("Fully connected layer : %d\r\n" %fc)
 feed.write("Neurons : %d\r\n" %fc_layer)
 feed.write("Epochs : %d\r\n" %epo)
-feed.write("Accuracy : %d\r\n" %score[1])
-
+feed.write("Accuracy : %f\r\n" %x)
+feed.close()
 
 # In[ ]:
 
