@@ -21,9 +21,20 @@ model = load_model('hyperparameter.h5')
 # In[3]:
 
 
+import pandas as pd
+file = open("labtest.csv")
+numline = len(file.readlines())
+print (numline)
+file.close()
+
+#get accuracy
 columns = ['layers','filter_size','kernel_size','pooling','fc','neurons','epochs','acc']
-dataset = pd.read_csv('realrecords.csv',names=columns)
-Y = float(dataset['acc'])
+dataset = pd.read_csv('labtest.csv',names=columns)
+y = dataset['acc'].tolist()
+
+Y = list(map(lambda x:x[2:-2], y))
+Y=(Y[numline-1])
+Y=float(Y)
 acc_t = 0.001
 
 
