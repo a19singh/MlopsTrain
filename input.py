@@ -5,7 +5,7 @@
 
 
 # getting row no. of last row
-file = open("labtest.csv")
+file = open("/root/Workspace/ML/mlcontainer/labtest.csv")
 numline = len(file.readlines())
 print (numline)
 file.close()
@@ -15,7 +15,7 @@ file.close()
 
 
 #reading all lines of the file
-file_variable = open('labtest.csv')
+file_variable = open('/root/Workspace/ML/mlcontainer/labtest.csv')
 all_lines_variable = file_variable.readlines()
 
 
@@ -37,7 +37,7 @@ row=sequence.split(',')
 
 
 #add new inputs to the file:
-with open("input.txt","w+") as f:
+with open("/root/Workspace/ML/mlcontainer/input.txt","w+") as f:
     for i in range (0,7):
         f.write("%d\n"%int(row[i]))
 
