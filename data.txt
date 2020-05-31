@@ -1,8 +1,0 @@
-Convol layer : 1
-Filters : 32
-kernels : 2
-Pool size : 2
-Fully connected layer : 1
-Neurons : 128
-Epochs : 2
-Accuracy : 97.649997
