@@ -29,7 +29,7 @@ file.close()
 
 #get accuracy
 columns = ['layers','filter_size','kernel_size','pooling','fc','neurons','epochs','acc']
-dataset = pd.read_csv('labtest.csv',names=columns)
+dataset = pd.read_csv('realrecords.csv',names=columns)
 y = dataset['acc'].tolist()
 
 Y = list(map(lambda x:x[2:-2], y))
