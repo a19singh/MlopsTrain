@@ -22,7 +22,7 @@ model = load_model('/task3/hyperparameter.h5')
 
 
 import pandas as pd
-file = open("labtest.csv")
+file = open("realrecords.csv")
 numline = len(file.readlines())
 print (numline)
 file.close()
@@ -69,25 +69,6 @@ while acc_t<Y:
             f.write(f"{layers},{filt},{ker},{pool},{fc},{fc_layer},{epo},{acc}\n")
 
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
